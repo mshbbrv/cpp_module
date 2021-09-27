@@ -1,17 +1,21 @@
 #pragma once
 #ifndef CAT_HPP
 #define CAT_HPP
-# include "Animal.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat: virtual public Animal {
 
 public:
 
-	Cat( void );
-	virtual ~Cat( void );
+    Cat( void );
+    virtual ~Cat( void );
 
-	Cat( const Cat &cat );
-	Cat& operator= (  const Cat &cat );
+    Cat( const Cat &cat );
+    Cat& operator= (  const Cat &cat );
+
+    std::string         getIdea( const int index ) const;
+    void                setIdea( std::string idea );
 
     virtual void        setType( std::string type );
     virtual std::string getType( void ) const;
@@ -20,6 +24,7 @@ public:
 private:
 
     std::string _type;
+    Brain       *_brain;
 
 };
 

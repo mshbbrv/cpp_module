@@ -1,9 +1,9 @@
-NAME		= ScavTrap
+NAME		= Animals
 CC			= clang++
 RM			= rm -rf
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp
-INC			= ClapTrap.hpp ScavTrap.hpp
+SRCS		= main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+INC			= Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)
