@@ -1,9 +1,9 @@
-NAME		= DiamondTrap
+NAME		= Kawabanga
 CC			= clang++
 RM			= rm -rf
-CPPFLAGS	= -Wall -Wextra -Werror -Wno-shadow -Wshadow -std=c++98
-SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-INC			= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
+SRCS		= main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+INC			= AMateria.hpp Character.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)
