@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat( void ) : _type( "Cat" ){
+Cat::Cat( void ) : Animal( "Cat" ) {
 
     std::cout << "Cat constructor called" << "\n";
 
@@ -19,13 +19,13 @@ Cat& Cat::operator=( const Cat &cat ) {
     if ( this != &cat ) {
 
         delete _brain;
-        _type = cat._type;
-        if ( cat._brain ) {
-            _brain = new Brain();
+        setType( cat.getType() );
 
-            for ( int i = 0; i < _brain->getIdeaCount(); i++ ) {
-                setIdea( cat.getIdea( i ) );
-            }
+        if ( cat._brain ) {
+
+            _brain = new Brain();
+            for ( int i = 0; i < _brain->getIdeaCount(); i++ )
+                _brain->setIdea( cat.getIdea(i) );
         }
         else
             _brain = 0;
@@ -36,10 +36,13 @@ Cat& Cat::operator=( const Cat &cat ) {
 
 Cat::Cat( const Cat &cat ){
 
-    _type = cat._type;
+    setType( cat.getType() );
 
     if ( cat._brain ) {
-        _brain = new Brain( *cat._brain );
+
+        _brain = new Brain();
+        for ( int i = 0; i < _brain->getIdeaCount(); i++ )
+            _brain->setIdea( cat.getIdea(i) );
     }
     else
         _brain = 0;
@@ -48,7 +51,7 @@ Cat::Cat( const Cat &cat ){
 
 std::string Cat::getIdea( const int index ) const {
 
-    if ( index < _brain->getIdeaCount() )
+    if ( index >= 0 && index < _brain->getIdeaCount() )
         return _brain->getIdea( index );
     else
         return "out of range";
@@ -57,16 +60,6 @@ std::string Cat::getIdea( const int index ) const {
 void    Cat::setIdea( std::string idea ) {
 
     _brain->setIdea( idea );
-}
-
-void Cat::setType( std::string type ) {
-
-    _type = type;
-}
-
-std::string   Cat::getType( void ) const {
-
-    return _type;
 }
 
 void Cat::makeSound( void ) const {

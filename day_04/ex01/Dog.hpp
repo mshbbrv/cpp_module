@@ -17,13 +17,10 @@ public:
     std::string         getIdea( const int index ) const;
     void                setIdea( std::string idea );
 
-    virtual void        setType( std::string type );
-    virtual std::string getType( void ) const;
     virtual void        makeSound( void ) const;
 
 private:
 
-	std::string _type;
 	Brain       *_brain;
 
 };

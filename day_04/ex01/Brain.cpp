@@ -11,8 +11,6 @@ Brain::Brain( void ) {
     for ( int i = 0; i < _ideasCount; i++ ) {
         _ideas[i] = "No idea";
     }
-
-    _nextIdeaToUpdate = 0;
 }
 
 Brain::~Brain( void ) {
@@ -24,21 +22,18 @@ Brain::~Brain( void ) {
 
 Brain &Brain::operator=( const Brain &brain ) {
 
-    if ( this != &brain ){
+    if ( this != &brain ) {
 
-        _nextIdeaToUpdate = brain._nextIdeaToUpdate;
-
-        delete _ideas;
+        delete[] _ideas;
 
         if ( brain._ideas ){
 
-            _ideas = new ( std::nothrow ) std::string[_ideasCount];
+            _ideas = new ( std::nothrow ) std::string[brain._ideasCount];
             if ( !_ideas )
                 std::cout << "Can't allocate memory" << "\n";
 
-            for ( int i = 0; i < _ideasCount; i++ ) {
+            for ( int i = 0; i < brain._ideasCount; i++ )
                 _ideas[i] = brain._ideas[i];
-            }
         }
         else
             _ideas = 0;
@@ -49,17 +44,14 @@ Brain &Brain::operator=( const Brain &brain ) {
 
 Brain::Brain( const Brain &brain ) {
 
-    _nextIdeaToUpdate = brain._nextIdeaToUpdate;
-
     if ( brain._ideas ){
 
-        _ideas = new ( std::nothrow ) std::string[_ideasCount];
+        _ideas = new ( std::nothrow ) std::string[brain._ideasCount];
         if ( !_ideas )
             std::cout << "Can't allocate memory" << "\n";
 
-        for ( int i = 0; i < _ideasCount; i++ ) {
+        for ( int i = 0; i < brain._ideasCount; i++ )
             _ideas[i] = brain._ideas[i];
-        }
     }
     else
         _ideas = 0;
@@ -72,7 +64,7 @@ int Brain::getIdeaCount( void ) const {
 
 std::string Brain::getIdea( const int index ) {
 
-    if ( index < getIdeaCount() )
+    if ( index >= 0 && index < _ideasCount )
         return _ideas[index];
     else
         return "out of range";
@@ -80,8 +72,10 @@ std::string Brain::getIdea( const int index ) {
 
 void Brain::setIdea( std::string idea ) {
 
-    if ( _nextIdeaToUpdate >= getIdeaCount() )
-        _nextIdeaToUpdate = 0;
-    _ideas[_nextIdeaToUpdate] = idea;
-    _nextIdeaToUpdate++;
+    for ( int i = 0; i < _ideasCount; i++ ) {
+        if ( _ideas[i] == "No idea" ) {
+            _ideas[i] = idea;
+            break;
+        }
+    }
 }

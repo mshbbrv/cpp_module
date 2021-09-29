@@ -1,7 +1,9 @@
 #pragma once
 #ifndef AMATERIAL_HPP
 #define AMATERIA_HPP
+
 #include <string>
+#include <iostream>
 #include "ICharacter.hpp"
 
 class ICharacter;
@@ -19,7 +21,7 @@ public:
     virtual ~AMateria( void );
 
     AMateria( const AMateria &aMateria );
-    AMateria& operator= ( const AMateria &aMateria );
+    AMateria& operator=( const AMateria &aMateria );
 
     std::string const & getType( void ) const; //Returns the materia type
 

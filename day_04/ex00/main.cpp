@@ -16,7 +16,11 @@ int main() {
     j->makeSound();
     meta->makeSound();
 
-    std::cout << "------Wrong Animals----------" << "\n";
+    delete meta;
+    delete j;
+    delete i;
+
+    std::cout << "\n------Wrong Animals----------" << "\n";
 
     const WrongAnimal *wrongMeta = new WrongAnimal();
     const WrongAnimal *wrongI = new WrongCat();
@@ -25,4 +29,6 @@ int main() {
     wrongI->makeSound();
     wrongMeta->makeSound();
 
+    //delete wrongMeta;
+    //delete wrongI;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
+
 #include <string>
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
@@ -11,7 +12,6 @@ private:
 
     std::string         _name;
     AMateria            *_inventory[4];
-    int                 _nextToUpdate;
 
 public:
 
@@ -21,8 +21,6 @@ public:
 
     Character( const Character &character );
     Character& operator= ( const Character &character );
-
-    AMateria getInventory( int idx );
 
     virtual std::string const & getName( void ) const;
     virtual void equip( AMateria* m );

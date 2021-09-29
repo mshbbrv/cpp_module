@@ -8,8 +8,8 @@ Cure::Cure( const Cure &cure ) : AMateria( cure ) {}
 
 Cure& Cure::operator=( const Cure &cure ) {
 
-    if (this != &cure)
-        AMateria::operator=(cure);
+    if ( this != &cure )
+        AMateria::operator=( cure );
 
     return *this;
 }

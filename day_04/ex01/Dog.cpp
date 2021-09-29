@@ -1,6 +1,6 @@
 #include "Dog.hpp"
 
-Dog::Dog( void ) : _type( "Dog" ){
+Dog::Dog( void ) : Animal( "Dog" ){
 
     std::cout << "Dog constructor called" << "\n";
 
@@ -18,16 +18,14 @@ Dog& Dog::operator=( const Dog &dog ){
 
     if ( this != &dog ) {
 
-        delete[] _brain;
-        _type = dog._type;
+        delete _brain;
+        setType( dog.getType() );
 
         if ( dog._brain ) {
 
             _brain = new Brain();
-
-            for ( int i = 0; i < _brain->getIdeaCount(); i++ ) {
-                setIdea( dog.getIdea( i ) );
-            }
+            for ( int i = 0; i < _brain->getIdeaCount(); i++ )
+                _brain->setIdea( dog.getIdea(i) );
         }
         else
             _brain = 0;
@@ -38,10 +36,13 @@ Dog& Dog::operator=( const Dog &dog ){
 
 Dog::Dog( const Dog &dog ){
 
-    _type = dog._type;
+    setType( dog.getType() );
 
     if ( dog._brain ) {
-        _brain = new Brain( *dog._brain );
+
+        _brain = new Brain();
+        for ( int i = 0; i < _brain->getIdeaCount(); i++ )
+            _brain->setIdea( dog.getIdea(i) );
     }
     else
         _brain = 0;
@@ -49,7 +50,7 @@ Dog::Dog( const Dog &dog ){
 
 std::string Dog::getIdea( const int index ) const {
 
-    if ( index < _brain->getIdeaCount() )
+    if ( index >= 0 && index < _brain->getIdeaCount() )
         return _brain->getIdea( index );
     else
         return "out of range";
@@ -58,16 +59,6 @@ std::string Dog::getIdea( const int index ) const {
 void    Dog::setIdea( std::string idea ) {
 
     _brain->setIdea( idea );
-}
-
-void Dog::setType( std::string type ) {
-
-    _type = type;
-}
-
-std::string   Dog::getType( void ) const {
-
-    return _type;
 }
 
 void Dog::makeSound( void ) const{

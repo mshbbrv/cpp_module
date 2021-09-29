@@ -1,7 +1,7 @@
 #pragma once
 #ifndef CAT_HPP
 #define CAT_HPP
-# include "Animal.hpp"
+#include "Animal.hpp"
 
 class Cat: virtual public Animal {
 
@@ -13,13 +13,7 @@ public:
 	Cat( const Cat &cat );
 	Cat& operator= (  const Cat &cat );
 
-    virtual void        setType( std::string type );
-    virtual std::string getType( void ) const;
 	virtual void        makeSound( void ) const;
-
-private:
-
-    std::string _type;
 
 };
 

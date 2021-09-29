@@ -1,8 +1,13 @@
 #include "Animal.hpp"
 
-Animal::Animal( void ) : _type( "Untyped" ){
+Animal::Animal( void ) : _type( "Untyped" ) {
 
 	std::cout << "Animal constructor called" << "\n";
+}
+
+Animal::Animal( std::string type ) : _type ( type ) {
+
+    std::cout << "Animal constructor called" << "\n";
 }
 
 Animal::~Animal( void ){
@@ -14,6 +19,7 @@ Animal& Animal::operator=( const Animal &animal ){
 
 	if ( this != &animal )
 		_type = animal._type;
+
 	return *this;
 }
 

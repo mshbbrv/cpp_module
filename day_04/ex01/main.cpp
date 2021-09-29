@@ -5,7 +5,7 @@
 int main( void ) {
 
     int             animalCount( 10 );
-    Animal    **animals ( new Animal*[animalCount] );
+    Animal          *animals[animalCount];
 
     std::cout << "------------Create Animals-------------" << "\n";
     for ( int i = 0; i < animalCount; i++ ) {
@@ -27,45 +27,43 @@ int main( void ) {
         std::cout << "\n";
     }
 
-    delete[] animals;
-
     std::cout << "\n------------Deep Copy Test-------------" << "\n";
 
     int ideaNum = 0;
     Cat firstCat;
-    std::cout << "firstCat idea #" << ideaNum << " "
+    std::cout << "\nfirstCat idea #" << ideaNum << " "
     << firstCat.getIdea( ideaNum ) << "\n";
     firstCat.setIdea( "Buy food" );
     std::cout << "firstCat idea #" << ideaNum << " "
-    << firstCat.getIdea( ideaNum ) << "\n";
+    << firstCat.getIdea( ideaNum ) << "\n\n";
     {
         Cat secondCat = firstCat;
-        std::cout << "secondCat idea #" << ideaNum
+        std::cout << "\nsecondCat idea #" << ideaNum
         << " " << secondCat.getIdea( ideaNum ) << "\n";
         secondCat.setIdea( "Buy more food" );
         ideaNum++;
-        std::cout << "secondDog idea #" << ideaNum
-        << " " << secondCat.getIdea( ideaNum ) << "\n";
+        std::cout << "secondCat idea #" << ideaNum
+        << " " << secondCat.getIdea( ideaNum ) << "\n\n";
     }
-    std::cout << "firstCat idea #" << ideaNum << " " <<
+    std::cout << "\nfirstCat idea #" << ideaNum << " " <<
     firstCat.getIdea( ideaNum ) << "\n\n";
 
     ideaNum = 0;
     Dog firstDog;
-    std::cout << "firstDog idea #" << ideaNum << " "
+    std::cout << "\nfirstDog idea #" << ideaNum << " "
     << firstDog.getIdea( ideaNum ) << "\n";
     firstDog.setIdea( "Buy bones" );
     std::cout << "firstDog idea #" << ideaNum << " "
-    << firstDog.getIdea( ideaNum ) << "\n";
+    << firstDog.getIdea( ideaNum ) << "\n\n";
     {
         Dog secondDog( firstDog );
-        std::cout << "secondDog idea #" << ideaNum
+        std::cout << "\nsecondDog idea #" << ideaNum
         << " " << secondDog.getIdea( ideaNum ) << "\n";
         secondDog.setIdea( "Buy more bones" );
         ideaNum++;
         std::cout << "secondDog idea #" << ideaNum
-        << " " << secondDog.getIdea( ideaNum ) << "\n";
+        << " " << secondDog.getIdea( ideaNum ) << "\n\n";
     }
-    std::cout << "firstDog idea #" << ideaNum << " " <<
-    firstDog.getIdea( ideaNum ) << "\n";
+    std::cout << "\nfirstDog idea #" << ideaNum << " " <<
+    firstDog.getIdea( ideaNum ) << "\n\n";
 }

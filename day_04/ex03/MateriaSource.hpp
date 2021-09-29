@@ -7,7 +7,7 @@ class MateriaSource : public IMateriaSource {
 
 private:
 
-    AMateria    *_copy[4];
+    AMateria    *_templates[4];
 
 public:
 

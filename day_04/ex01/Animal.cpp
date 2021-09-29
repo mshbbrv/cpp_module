@@ -5,6 +5,11 @@ Animal::Animal( void ) : _type( "Untyped" ){
 	std::cout << "Animal constructor called" << "\n";
 }
 
+Animal::Animal( std::string type): _type( type ) {
+
+    std::cout << "Animal constructor called" << "\n";
+}
+
 Animal::~Animal( void ){
 
 	std::cout << "Animal destructor called" << "\n";

@@ -1,6 +1,6 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria( void ) {}
+AMateria::AMateria( void ) : _type( "Untyped" ) {}
 
 AMateria::AMateria( const std::string &type ) : _type( type ) {}
 
@@ -24,4 +24,8 @@ std::string const& AMateria::getType( void ) const {
     return _type;
 }
 
-void AMateria::use( ICharacter& target ) { (void)target; }
+void AMateria::use( ICharacter& target ) {
+
+    std::cout << "Why you trying use " << _type << "materia on "
+    << target.getName() << "?\n";
+}

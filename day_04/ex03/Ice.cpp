@@ -8,8 +8,8 @@ Ice::Ice( const Ice &ice ) : AMateria( ice ) {}
 
 Ice& Ice::operator=( const Ice &ice ) {
 
-    if (this != &ice)
-        AMateria::operator=(ice);
+    if ( this != &ice)
+        AMateria::operator=( ice );
 
     return *this;
 }

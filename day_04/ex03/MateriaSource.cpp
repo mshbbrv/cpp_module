@@ -2,27 +2,23 @@
 
 MateriaSource::MateriaSource( void ) {
 
-    for (int i = 0; i < 4; i++){
-        _copy[i] = 0;
-    }
+    for (int i = 0; i < 4; i++)
+        _templates[i] = nullptr;
 }
 
 MateriaSource::~MateriaSource( void ) {
 
-    for (int i = 0; i < 4; i++){
-        delete _copy[i];
-    }
+    for (int i = 0; i < 4; i++)
+        delete _templates[i];
 }
 
 MateriaSource::MateriaSource( const MateriaSource &materiaSource ) {
 
     for (int i = 0; i < 4; i++) {
-
-        delete _copy[i];
-        if ( materiaSource._copy[i] )
-            _copy[i] = materiaSource._copy[i];
+        if ( materiaSource._templates[i] )
+            _templates[i] = materiaSource._templates[i];
         else
-            _copy[i] = 0;
+            _templates[i] = nullptr;
     }
 }
 
@@ -32,33 +28,32 @@ MateriaSource& MateriaSource::operator=( const MateriaSource &materiaSource ) {
     {
         for (int i = 0; i < 4; i++) {
 
-            delete _copy[i];
-            if ( materiaSource._copy[i] )
-                _copy[i] = materiaSource._copy[i];
+            delete _templates[i];
+            if ( materiaSource._templates[i] )
+                _templates[i] = materiaSource._templates[i];
             else
-                _copy[i] = 0;
+                _templates[i] = nullptr;
         }
     }
 
     return *this;
 }
 
-void MateriaSource::learnMateria( AMateria * arg) {
+void MateriaSource::learnMateria( AMateria *arg) {
 
-    int i = 0;
-
-    while ( _copy[i] )
-        i++;
-
-    _copy[i] = arg;
+    for ( int i = 0; i < 4; i++ ) {
+        if ( _templates[i] == nullptr ) {
+            _templates[i] = arg;
+            break;
+        }
+    }
 }
 
 AMateria* MateriaSource::createMateria( const std::string &type ) {
 
-    for (int i = 0; i < 4; i++){
-
-        if ( _copy[i] && _copy[i]->getType() == type)
-            return _copy[i]->clone();
+    for (int i = 0; i < 4; i++) {
+        if ( _templates[i] && _templates[i]->getType() == type)
+            return _templates[i]->clone();
     }
 
     return 0;

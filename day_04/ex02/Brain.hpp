@@ -1,10 +1,11 @@
 #pragma once
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
-# include <iostream>
-# include <string>
 
-class Brain{
+#include <iostream>
+#include <string>
+
+class Brain {
 
 public:
 
@@ -12,7 +13,7 @@ public:
 	~Brain( void );
 
 	Brain( const Brain &brain );
-	Brain& operator= ( const Brain &brain );
+	Brain& operator=( const Brain &brain );
 
 	int         getIdeaCount( void ) const;
 	std::string getIdea( const int index );
@@ -21,7 +22,6 @@ public:
 private:
 
 	std::string         *_ideas;
-	int                 _nextIdeaToUpdate;
 	const static int    _ideasCount = 100;
 
 };

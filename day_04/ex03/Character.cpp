@@ -1,24 +1,21 @@
 #include "Character.hpp"
 
-Character::Character( void ) : _name( "Unnamed" ), _nextToUpdate(0){
+Character::Character( void ) : _name( "Unnamed" ) {
 
-    for (int i = 0; i < 4; i++) {
-        _inventory[i] = 0;
-    }
+    for (int i = 0; i < 4; i++)
+        _inventory[i] = nullptr;
 }
 
-Character::Character( std::string name ) : _name( name ), _nextToUpdate(0){
+Character::Character( std::string name ) : _name( name ) {
 
-    for (int i = 0; i < 4; i++) {
-        _inventory[i] = 0;
-    }
+    for (int i = 0; i < 4; i++)
+        _inventory[i] = nullptr;
 }
 
 Character::~Character( void ) {
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
         delete _inventory[i];
-    }
 }
 
 Character &Character::operator=( const Character &character ) {
@@ -26,7 +23,6 @@ Character &Character::operator=( const Character &character ) {
     if ( this != &character ) {
 
         _name = character.getName();
-
         for (int i = 0; i < 4; i++) {
 
             delete _inventory[i];
@@ -46,11 +42,10 @@ Character::Character( const Character &character ) {
 
     for (int i = 0; i < 4; i++) {
 
-        delete _inventory[i];
         if ( character._inventory[i] )
             _inventory[i] = character._inventory[i];
         else
-            _inventory[i] = 0;
+            _inventory[i] = nullptr;
     }
 }
 
@@ -61,19 +56,22 @@ std::string const& Character::getName() const {
 
 void Character::equip( AMateria* m ) {
 
-    if ( _nextToUpdate < 4)
-        _inventory[_nextToUpdate] = m;
-    _nextToUpdate++;
+    for ( int i = 0; i < 4; i++ ) {
+        if ( _inventory[i] == nullptr ) {
+            _inventory[i] = m;
+            break;
+        }
+    }
 }
 
 void Character::unequip( int idx ) {
 
-    if (idx >= 0 && idx < 4)
-        _inventory[idx] = 0;
+    if ( idx >= 0 && idx < 4 )
+        _inventory[idx] = nullptr;
 }
 
 void Character::use( int idx, ICharacter &target ) {
 
-    if (idx >= 0 && idx < 4)
+    if ( idx >= 0 && idx < 4 )
         _inventory[idx]->use( target );
 }
