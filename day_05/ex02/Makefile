@@ -1,9 +1,9 @@
-NAME		= Animals
+NAME		= Forms
 CC			= clang++
 RM			= rm -rf
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS		= main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
-INC			= Animal.hpp Cat.hpp Dog.hpp Brain.hpp
+SRCS		= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+INC			= Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)
@@ -13,6 +13,6 @@ $(NAME) :	$(OBJ)
 clean :
 			$(RM) $(OBJ)
 fclean : 	clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) Moon_shrubbery
 re :		fclean all
 .PHONY :	all clean fclean re

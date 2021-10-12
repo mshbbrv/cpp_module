@@ -1,70 +1,81 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main( void ) {
 
-    int             animalCount( 10 );
-    Animal          *animals[animalCount];
-    //Animal          test;
+    Bureaucrat ben("Ben", 1 );
+    Bureaucrat ted("Ted", 50 );
+    Bureaucrat greg("Greg", 100 );
 
-    std::cout << "------------Create Animals-------------" << "\n";
-    for ( int i = 0; i < animalCount; i++ ) {
+    std::cout << "--------------ShrubberyCreationForm----------------" << "\n";
+    try {
+        ShrubberyCreationForm x( "Moon" );
 
-        std::cout << "Create Animal #" << i + 1 << ":\n";
-        if ( i < animalCount / 2)
-            animals[i] = new Cat();
-        else
-            animals[i] = new Dog();
-        std::cout << "\n";
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
+
+        greg.signForm( x );
+        ted.signForm( x );
+        ben.signForm( x );
+
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
     }
 
-    std::cout << "\n------------Delete Animals-------------" << "\n";
+    std::cout << "--------------RobotomyRequestForm----------------" << "\n";
+    try {
+        RobotomyRequestForm x( "Moon" );
 
-    for ( int i = 0; i < animalCount; i++ ) {
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
 
-        std::cout << "Delete Animal #" << i + 1 << ":\n";
-        delete animals[i];
-        std::cout << "\n";
+        greg.signForm( x );
+        ted.signForm( x );
+        ben.signForm( x );
+
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
     }
 
-    std::cout << "\n------------Deep Copy Test-------------" << "\n";
+    std::cout << "--------------PresidentialPardonForm----------------" << "\n";
+    try {
 
-    int ideaNum = 0;
-    Cat firstCat;
-    std::cout << "\nfirstCat idea #" << ideaNum << " "
-    << firstCat.getIdea( ideaNum ) << "\n";
-    firstCat.setIdea( "Buy food" );
-    std::cout << "firstCat idea #" << ideaNum << " "
-    << firstCat.getIdea( ideaNum ) << "\n\n";
-    {
-        Cat secondCat = firstCat;
-        std::cout << "\nsecondCat idea #" << ideaNum
-        << " " << secondCat.getIdea( ideaNum ) << "\n";
-        secondCat.setIdea( "Buy more food" );
-        ideaNum++;
-        std::cout << "secondCat idea #" << ideaNum
-        << " " << secondCat.getIdea( ideaNum ) << "\n\n";
-    }
-    std::cout << "\nfirstCat idea #" << ideaNum << " " <<
-    firstCat.getIdea( ideaNum ) << "\n\n";
+        PresidentialPardonForm x( "Moon" );
 
-    ideaNum = 0;
-    Dog firstDog;
-    std::cout << "\nfirstDog idea #" << ideaNum << " "
-    << firstDog.getIdea( ideaNum ) << "\n";
-    firstDog.setIdea( "Buy bones" );
-    std::cout << "firstDog idea #" << ideaNum << " "
-    << firstDog.getIdea( ideaNum ) << "\n\n";
-    {
-        Dog secondDog( firstDog );
-        std::cout << "\nsecondDog idea #" << ideaNum
-        << " " << secondDog.getIdea( ideaNum ) << "\n";
-        secondDog.setIdea( "Buy more bones" );
-        ideaNum++;
-        std::cout << "secondDog idea #" << ideaNum
-        << " " << secondDog.getIdea( ideaNum ) << "\n\n";
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
+
+        greg.signForm( x );
+        ted.signForm( x );
+        ben.signForm( x );
+
+        std::cout << x;
+        ben.executeForm( x );
+        ted.executeForm( x );
+        greg.executeForm( x );
     }
-    std::cout << "\nfirstDog idea #" << ideaNum << " " <<
-    firstDog.getIdea( ideaNum ) << "\n\n";
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
 }

@@ -1,9 +1,11 @@
-NAME		= Kawabanga
+NAME		= Forms
 CC			= clang++
 RM			= rm -rf
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS		= main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
-INC			= AMateria.hpp Character.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
+SRCS		= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp Intern.cpp
+INC			= Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp \
+			Intern.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)
@@ -13,6 +15,6 @@ $(NAME) :	$(OBJ)
 clean :
 			$(RM) $(OBJ)
 fclean : 	clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) Forest_shrubbery
 re :		fclean all
 .PHONY :	all clean fclean re

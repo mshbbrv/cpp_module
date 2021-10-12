@@ -2,69 +2,61 @@
 
 int main( void ) {
 
-    std::cout << "--------------default bureaucrat----------------" << "\n";
+    Bureaucrat ben("Ben", 1 );
+    Bureaucrat ted("Ted", 50 );
+    Bureaucrat greg("Greg", 100 );
+
+    std::cout << ben;
+    std::cout << ted;
+    std::cout << greg;
+
+    std::cout << "--------------150 grade form----------------" << "\n";
     try {
 
-        Bureaucrat bureaucrat;
+        Form superForm( "SuperForm", 150, 150);
 
-        std::cout << "bureaucrat " << bureaucrat.getName() << " created!"
-        << "\n";
+        std::cout << superForm;
+        greg.signForm( superForm );
+        std::cout << superForm;
+        ted.signForm(superForm );
+        std::cout << superForm;
+        ben.signForm(superForm );
+        std::cout << superForm;
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
+    std::cout << "-------------75 grade form---------------" << "\n";
+    try {
+
+        Form superForm( "SuperForm", 75, 75);
+
+        std::cout << superForm;
+        greg.signForm( superForm );
+        std::cout << superForm;
+        ted.signForm(superForm );
+        std::cout << superForm;
+        ben.signForm(superForm );
+        std::cout << superForm;
     }
     catch (std::exception &exception) {
 
         std::cout << "Exception: " << exception.what() << "\n";
     }
 
-    std::cout << "--------------0 grade bureaucrat--------------" << "\n";
+    std::cout << "--------------1 grade form---------------" << "\n";
     try {
 
-        Bureaucrat bureaucrat("Bart", 0);
+        Form superForm( "SuperForm", 1, 1 );
 
-        std::cout << "bureaucrat " << bureaucrat.getName() << " created!"
-        << "\n";
-    }
-    catch (std::exception &exception) {
-
-        std::cout << "Exception: " << exception.what() << "\n";
-    }
-
-    std::cout << "------------151 grade bureaucrat-------------" << "\n";
-    try {
-
-        Bureaucrat bureaucrat("Bart", 151);
-
-        std::cout << "bureaucrat " << bureaucrat.getName() << " created!"
-        << "\n";
-    }
-    catch (std::exception &exception) {
-
-        std::cout << "Exception: " << exception.what() << "\n";
-    }
-
-    std::cout << "--------downgrade default bureaucrat-----------" << "\n";
-    try {
-
-        Bureaucrat bureaucrat;
-
-        std::cout << "bureaucrat " << bureaucrat.getName() << " created!"
-        << "\n";
-
-        bureaucrat.downGrade();
-    }
-    catch (std::exception &exception) {
-
-        std::cout << "Exception: " << exception.what() << "\n";
-    }
-
-    std::cout << "--------upgrade 1 grade bureaucrat------------" << "\n";
-    try {
-
-        Bureaucrat bureaucrat("Bart", 1);
-
-        std::cout << "bureaucrat " << bureaucrat.getName() << " created!"
-        << "\n";
-
-        bureaucrat.upGrade();
+        std::cout << superForm;
+        greg.signForm( superForm );
+        std::cout << superForm;
+        ted.signForm(superForm );
+        std::cout << superForm;
+        ben.signForm(superForm );
+        std::cout << superForm;
     }
     catch (std::exception &exception) {
 

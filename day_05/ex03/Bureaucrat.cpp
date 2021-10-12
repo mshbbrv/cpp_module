@@ -24,7 +24,7 @@ Bureaucrat &Bureaucrat::operator=( const Bureaucrat &bureaucrat ) {
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat &bureaucrat ) :
-_name( bureaucrat.getName() ), _grade( bureaucrat.getGrade() ) {}
+        _name( bureaucrat.getName() ), _grade( bureaucrat.getGrade() ) {}
 
 std::string Bureaucrat::getName( void ) const {
 
@@ -50,6 +50,42 @@ void Bureaucrat::downGrade( void ) {
         throw Bureaucrat::GradeTooLowException();
     else
         _grade++;
+}
+
+void Bureaucrat::signForm( Form &form ) {
+
+    if ( form.isSigned() )
+        std::cout << "Form already signed" << "\n";
+    else {
+            try {
+
+                form.beSigned( *this );
+                std::cout << _name << " signs " << form.getName() << "\n";
+            }
+            catch ( std::exception &e ){
+
+                std::cout << _name << " cannot sign " << form.getName()
+                << " because " << e.what() << "\n";
+            }
+    }
+}
+
+void Bureaucrat::executeForm( const Form &form ) {
+
+    if ( form.isSigned() ) {
+
+        try {
+
+            form.execute( *this );
+            std::cout << _name << " executes " << form.getName() << "\n";
+        }
+        catch ( std::exception &e ) {
+
+        std::cout << "Exception: " << e.what() << "\n";
+        }
+    }
+    else
+        std::cout << "Form is not signed" << "\n";
 }
 
 const char *Bureaucrat::GradeTooHighException::what( void ) const throw() {

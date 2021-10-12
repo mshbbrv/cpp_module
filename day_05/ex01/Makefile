@@ -1,9 +1,9 @@
-NAME		= Bureaucrat
+NAME		= Form
 CC			= clang++
 RM			= rm -rf
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS		= main.cpp Bureaucrat.cpp
-INC			= Bureaucrat.hpp
+SRCS		= main.cpp Bureaucrat.cpp Form.cpp
+INC			= Bureaucrat.hpp Form.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)

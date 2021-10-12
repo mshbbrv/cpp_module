@@ -1,31 +1,123 @@
-#include "MateriaSource.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
-#include "Character.hpp"
-
+#include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
 int main( void ) {
 
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
+    Bureaucrat ben("Ben", 1 );
+    Bureaucrat ted("Ted", 50 );
+    Bureaucrat greg("Greg", 100 );
+    Intern i;
 
-    ICharacter* me = new Character("me");
+    std::cout << "--------------fail----------------" << "\n";
+    try {
+        Form *x;
 
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
+        x = i.makeForm("fail", "def");
 
-    ICharacter* bob = new Character("bob");
+        if ( x ) {
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
 
-    me->use(0, *bob);
-    me->use(1, *bob);
+            greg.signForm( *x );
+            ted.signForm( *x );
+            ben.signForm( *x );
 
-    delete bob;
-    delete me;
-    delete src;
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+            delete x;
+        }
+    }
+    catch (std::exception &exception) {
 
-    return 0;
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
+
+    std::cout << "--------------ShrubberyCreationForm----------------" << "\n";
+    try {
+        Form *x;
+
+        x = i.makeForm("shrubbery creation", "Forest");
+
+        if ( x ) {
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+
+            greg.signForm( *x );
+            ted.signForm( *x );
+            ben.signForm( *x );
+
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+            delete x;
+        }
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
+
+    std::cout << "--------------RobotomyRequestForm----------------" << "\n";
+    try {
+        Form *x;
+
+        x = i.makeForm("robotomy request", "Bender");
+
+        if ( x ) {
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+
+            greg.signForm( *x );
+            ted.signForm( *x );
+            ben.signForm( *x );
+
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+            delete x;
+        }
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
+
+    std::cout << "--------------PresidentialPardonForm----------------" << "\n";
+    try {
+
+        Form *x;
+
+        x = i.makeForm("president pardon", "42learner");
+
+        if ( x ) {
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+
+            greg.signForm( *x );
+            ted.signForm( *x );
+            ben.signForm( *x );
+
+            std::cout << *x;
+            ben.executeForm( *x );
+            ted.executeForm( *x );
+            greg.executeForm( *x );
+            delete x;
+        }
+    }
+    catch (std::exception &exception) {
+
+        std::cout << "Exception: " << exception.what() << "\n";
+    }
 }
