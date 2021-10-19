@@ -1,9 +1,9 @@
-NAME		= Bureaucrat
+NAME		= convert
 CC			= clang++
 RM			= rm -rf
 CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS		= main.cpp Bureaucrat.cpp
-INC			= Bureaucrat.hpp
+SRCS		= main.cpp Converter.cpp templates.cpp
+INC			= Converter.hpp
 OBJ	 		= $(patsubst %.cpp, %.o, $(SRCS))
 all : 		$(NAME)
 $(NAME) :	$(OBJ)
