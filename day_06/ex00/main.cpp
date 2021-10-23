@@ -7,7 +7,8 @@ void    convert( const T &literal ) {
 
     try {
         std::cout << "char: ";
-        std::cout << "\'" << converter.toChar( literal ) << "\'" << '\n';
+        char    chr = converter.toChar( literal );
+        std::cout << "\'" << chr << "\'" << '\n';
     }
     catch ( std::exception &e ) {
         std::cout << e.what() << '\n';
@@ -30,14 +31,18 @@ void    convert( const T &literal ) {
     d - round(d) == 0 ? std::cout << ".0" << "\n" : std::cout << "\n" ;
 }
 
-int typeDetect( std::string literal ) {
+int stringParser( std::string literal ) {
 
     if ( literal[0] == '\'' && std::isalpha( literal[1] )
         && literal[2] == '\'')
         convert( literal[1] );
     else {
         try {
-            convert( std::stoi( literal ) );
+            if ( literal.find_first_not_of( "0123456789" )
+                                        == std::string::npos )
+                convert( std::stoi( literal ) );
+            else
+                throw std::logic_error( "String is not integer." );
         }
         catch ( std::exception &e ) {
 
@@ -63,10 +68,10 @@ int main( int ac, char *av[] ) {
     if ( ac == 2 ) {
 
         try {
-            typeDetect( av[1] );
+            stringParser( av[1] );
         }
         catch ( std::exception &e ) {
-            std::cout << e.what() << "\n";
+            std::cerr << e.what() << "\n";
         }
     }
     else
